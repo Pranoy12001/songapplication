@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-{% block content %}
+{% extends 'music/base.html' %}
+{% block title %}Album Details{% endblock%}
+{% block body %}
 <img src={{ allAlbum.album_logo }}>
 
 <h1>{{ allAlbum.album }}</h1>
