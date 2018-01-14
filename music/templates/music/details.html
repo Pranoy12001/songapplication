@@ -4,10 +4,22 @@
 
 <h1>{{ allAlbum.album }}</h1>
 <h3>{{allAlbum.artist}}</h3>
-<ul>
-    {% for song in allAlbum.song_set.all %}
-        <li>{{ song.song_title }} - {{song.file_type}}</li>
-    {% endfor %}
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
 
-</ul>
+<form action="{% url 'music:favorite' allAlbum.id %}" method="post">
+    {% csrf_token %}
+    {% for song in allAlbum.song_set.all %}
+        <input type="radio" id="song{{ loop.counter }}" name="song" value="{{ song.id }}"/>
+        <level for ="song{{ loop.counter }}">
+            {{ song.song_title }}
+            {% if song.is_favorite %}
+                <img src="/home/pranoy/Downloads/star-icon.png"/>
+            {% endif %}
+        </level><br>
+    {% endfor %}
+    <input type="submit" value="Favorite"/>
+
+</form>
 {% endblock %}
