@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% block content %}
+<img src={{ allAlbum.album_logo }}>
+
+<h1>{{ allAlbum.album }}</h1>
+<h3>{{allAlbum.artist}}</h3>
+<ul>
+    {% for song in allAlbum.song_set.all %}
+        <li>{{ song.song_title }} - {{song.file_type}}</li>
+    {% endfor %}
+
+</ul>
+{% endblock %}
