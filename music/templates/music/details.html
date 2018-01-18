@@ -2,22 +2,22 @@
 {% extends 'music/base.html' %}
 {% block title %}Album Details{% endblock%}
 {% block body %}
-<img src={{ allAlbum.album_logo }}>
+<img src={{ all_album.album_logo }}>
 
-<h1>{{ allAlbum.album }}</h1>
-<h3>{{allAlbum.artist}}</h3>
+<h1>{{ all_album.album }}</h1>
+<h3>{{all_album.artist}}</h3>
 {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
 {% endif %}
 
-<form action="{% url 'music:favorite' allAlbum.id %}" method="post">
+<form action="{% url 'music:detail' all_album.id %}" method="post">
     {% csrf_token %}
-    {% for song in allAlbum.song_set.all %}
+    {% for song in all_album.song_set.all %}
         <input type="radio" id="song{{ loop.counter }}" name="song" value="{{ song.id }}"/>
         <level for ="song{{ loop.counter }}">
             {{ song.song_title }}
             {% if song.is_favorite %}
-                <img src="/home/pranoy/Downloads/star-icon.png"/>
+                <img src="home/pranoy/Downloads/star-icon.png"/>
             {% endif %}
         </level><br>
     {% endfor %}
